@@ -27,20 +27,6 @@ for (let i in input) {
   });
 }
 
-const memoize = (fn) => {
-  let cache = new Map();
-  return (...args) => {
-    let n = args[0]; // just taking one argument here
-    if (cache.has(n)) {
-      return cache.get(n);
-    } else {
-      let result = fn(n);
-      cache.set(n, result);
-      return result;
-    }
-  };
-};
-
 const isValidArrangement = (record) => {
   const damaged = record.springs.match(/#+/g);
   if (damaged.length != record.groups.length) {
@@ -54,8 +40,6 @@ const isValidArrangement = (record) => {
   }
   return true;
 };
-
-const memoizedIsValidArrangement = memoize(isValidArrangement);
 
 const getArrangementCount = (record) => {
   let count = 0;
@@ -75,20 +59,16 @@ const getArrangementCount = (record) => {
           springs.substring(record.replacements[j] + 1);
       }
     }
-    if (
-      memoizedIsValidArrangement({ springs: springs, groups: record.groups })
-    ) {
+    if (isValidArrangement({ springs: springs, groups: record.groups })) {
       count++;
     }
   }
   return count;
 };
 
-const memoizedGetArrangementCount = memoize(getArrangementCount);
-
 let sum = 0;
 for (let i in records) {
-  sum += memoizedGetArrangementCount(records[i]);
+  sum += getArrangementCount(records[i]);
 }
 
 console.log(sum);
