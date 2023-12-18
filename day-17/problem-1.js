@@ -118,7 +118,7 @@ const compareNodes = (a, b) => {
         row: b.row,
         column: b.column,
         direction: b.direction,
-        canMoveStraight: a.straightCount < 3,
+        canMoveStraight: b.straightCount < 3,
       })
     ]
   );
