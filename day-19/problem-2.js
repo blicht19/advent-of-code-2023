@@ -8,9 +8,7 @@ if (process.argv.length < 3) {
 let [workflowList] = fs.readFileSync(process.argv[2]).toString().split("\n\n");
 workflowList = workflowList.split("\n");
 
-/* Based solution by Reddit user Polaric_Spiral https://shorturl.at/fvCD9
- * https://shorturl.at/AEFGH
- */
+/* Based solution by Reddit user Polaric_Spiral https://www.reddit.com/r/adventofcode/comments/18ltr8m/comment/ke48wv2/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button&rdt=35843 */
 
 const parseRule = (rule) => {
   if (!rule.includes(":")) {
